@@ -61,10 +61,13 @@ elem.send_keys(Keys.RETURN)
 
 time.sleep(3)
 
-#find button    
-elem = driver.find_element(By.CSS_SELECTOR, "[data-testid='button-skip']")
+#find skip button    
+try:
+    elem = driver.find_element(By.CSS_SELECTOR, "[data-testid='button-skip']")
 
-elem.click()
+    elem.click()
+except:
+    pass
 
 #find hosted tab
 elem = driver.find_element(By.CSS_SELECTOR,'[class="EventContainer_tab__kxLkd"]')
