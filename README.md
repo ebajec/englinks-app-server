@@ -9,4 +9,8 @@ Will not work unless a file named"password-username.txt" is placed in the the re
 
 **server.py** Pretty self-explanatory I'm sure.  
 
-'/tutor-requests' recieves tutor requests and stores the data in folders named 
+'/tutor-requests' recieves tutor requests and stores the data in folders for each username.
+
+'/login'  Supposed to verify login info.  For now it just returns true because it's only for testing.  
+
+'/event_data/filename.txt' Entering the name of a valid file containing event data will return the contents of that file.  
