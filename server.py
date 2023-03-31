@@ -16,7 +16,7 @@ def update_file():
 
     requestData = (str)(request.data.decode('utf-8'))
     data = json.loads(requestData)
-    filepath = 'E:/workshop-app-server/tutor_requests/' +data['user'] +'/'
+    filepath = 'tutor_requests/' +data['user'] +'/'
 
     if(not os.path.isdir(filepath)): 
         os.mkdir(filepath)
@@ -54,9 +54,7 @@ def get_calendar_data(file):
     return f.read()
     
 
-
-
 if __name__ ==  '__main__':
-    app.run(host='localhost', port=5000)
+    app.run(host='0.0.0.0', port=5000)
 
 
