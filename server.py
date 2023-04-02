@@ -32,7 +32,7 @@ def update_file():
         else:
             data.pop('user')
             with open(filepath + filename, 'x') as f:
-                f.write(json.encode(data))   
+                f.write(json.dumps(data))   
 
             return 'Tutor request recieved!'
 
