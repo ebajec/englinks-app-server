@@ -15,6 +15,7 @@ def test():
 def update_file():
 
     body = (str)(request.data.decode('utf-8'))
+    data = {}
     data = json.loads(body)
     filepath = 'tutor_requests/' +data['user'] +'/'
 
@@ -29,8 +30,9 @@ def update_file():
         if (os.path.isfile(filepath + filename)):
             request_num += 1
         else:
+            data.pop('user')
             with open(filepath + filename, 'x') as f:
-                f.write(body)   
+                f.write(json.encode(data))   
 
             return 'Tutor request recieved!'
 
@@ -68,12 +70,16 @@ def login():
 
     return json.dumps(response)
           
-@app.route('/event_data/<string:file>')
+@app.route('/load/<string:file>')
 def get_calendar_data(file):
 
-    f = open(file,'r')
-    return f.read()
+    path = 'readable/' + file
+
+    if os.path.isfile(path):
+        f = open('readable/' + file,'r')
+        return f.read()
     
+    return 'The file you are looking for does not exist.'
 
 
 

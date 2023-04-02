@@ -35,7 +35,7 @@ def find_three_digits(eventTitle):
 
 
 #NOTE: this will not work unless it has a valid password for a bounce account
-f = open('password-username.txt','r')
+f = open('username-password.txt','r')
 
 temp = f.read().split(',')
 
@@ -124,8 +124,9 @@ for event in eventsHTML:
     else:
         eventData[2][1].append(eventInfo)
     
+#data[0] is filepath, data[1] is list of events
 for data in eventData:
-    f = open(data[0],'w')
+    f = open('readable/' + data[0],'w')
     json.dump(data[1],f)
     f.close()
 
