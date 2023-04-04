@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import json
-from cryptography.fernet import Fernet
+from datetime import date
 
 class PushStack:
     def __init__(self,size):
@@ -46,35 +46,44 @@ password = temp[1]
 driver = webdriver.Chrome()
 
 driver.get("https://www.bouncelife.com/login?from=%2Fprofile%2F5e87a4794829bb0011ce7480")
-elem = driver.find_element(By.TAG_NAME, "input")
-elem.clear()
 
-#sign in
-elem.send_keys(username)
-elem.send_keys(Keys.RETURN)
-time.sleep(5)
+while True:
+    try:
+        elem = driver.find_element(By.TAG_NAME, "input")
+        elem.clear()   
+        elem.send_keys(username)
+        elem.send_keys(Keys.RETURN)
+        break
+    except:
+        pass
 
-elem = driver.find_element(By.NAME, "password")
+while True:
+    try:
+        elem = driver.find_element(By.NAME, "password")
+        elem.send_keys(password)
+        elem.send_keys(Keys.RETURN)
+        break
+    except:
+        pass
 
-elem.send_keys(password)
-elem.send_keys(Keys.RETURN)
-
-time.sleep(3)
 
 #find skip button    
 try:
     elem = driver.find_element(By.CSS_SELECTOR, "[data-testid='button-skip']")
-
     elem.click()
 except:
     pass
 
 #find hosted tab
-elem = driver.find_element(By.CSS_SELECTOR,'[class="EventContainer_tab__kxLkd"]')
-elem.click()
+while True:
+    try:
+        elem = driver.find_element(By.CSS_SELECTOR,'[class="EventContainer_tab__kxLkd"]')
+        elem.click()
+        break
+    except:
+        pass
 
 html = driver.page_source
-
 driver.close()
 
 soup = BeautifulSoup(html,'lxml')
@@ -90,7 +99,7 @@ eventData = [("events_misc.txt",[]),("events_first_year.txt",[]),("events_upper_
 
 
 #this is for a bit of a hack to simplify things
-year = 2023
+year = date.today().year
 date_stack = PushStack(2)
 
 for event in eventsHTML:
