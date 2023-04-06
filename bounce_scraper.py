@@ -1,5 +1,4 @@
 from bs4 import BeautifulSoup
-import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -25,7 +24,7 @@ class PushStack:
         return self.body[n]
 
 def find_three_digits(eventTitle):
-
+ 
     for i in range(0,len(eventTitle) - 2):
         substring = eventTitle[i:i+3]
 
@@ -89,14 +88,15 @@ driver.close()
 soup = BeautifulSoup(html,'lxml')
 
 eventList = soup.find(id = 'eventList')
+#For some reason it fails to find eventList sometimes, so it does this
+while (eventList == None):
+    eventList = soup.find(id = 'eventList')
 
 first_event_link = eventList.find_next()
 other_events = first_event_link.find_next_siblings()
 eventsHTML = [first_event_link] + other_events
 
 eventData = [("events_misc.txt",[]),("events_first_year.txt",[]),("events_upper_year.txt",[])]
-
-
 
 #this is for a bit of a hack to simplify things
 year = date.today().year
@@ -108,9 +108,10 @@ for event in eventsHTML:
     data = event.find_next().find_next_siblings()
 
     eventInfo = {'title':'', 'date':'','month':'','year':'','time':''}
-
+    
+    #this is a terrible way to parse strings but it works for now 
     title = data[1].string
-    date = data[0].string[3:7]
+    date_num = data[0].string[3:7]
     month = data[0].string[:3]    
 
     date_stack.push(month.lower())
@@ -119,7 +120,7 @@ for event in eventsHTML:
         year -= 1
 
     eventInfo['title'] = title
-    eventInfo['date'] = int(date.replace(' ',''))
+    eventInfo['date'] = int(date_num.replace(' ',''))
     eventInfo['month'] = month
     eventInfo['year'] = year
     eventInfo['time'] = data[0].string[7:]
