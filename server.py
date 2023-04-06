@@ -8,11 +8,13 @@ app = Flask(__name__)
 
 @app.route('/network_test')
 def test():
-
     return 'Connection successful!'
 
 @app.route('/recieve_tutor_request', methods = ['POST'])
 def update_file():
+
+    if (not os.path.isdir('tutor_requests')):
+        os.mkdir('tutor_requests')
 
     body = (str)(request.data.decode('utf-8'))
     data = {}
