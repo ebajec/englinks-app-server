@@ -47,6 +47,7 @@ driver = webdriver.Chrome()
 
 driver.get("https://www.bouncelife.com/login?from=%2Fprofile%2F5e87a4794829bb0011ce7480")
 
+#enter credentials
 while True:
     try:
         elem = driver.find_element(By.TAG_NAME, "input")
@@ -67,12 +68,14 @@ while True:
         pass
 
 
-#find skip button    
-try:
-    elem = driver.find_element(By.CSS_SELECTOR, "[data-testid='button-skip']")
-    elem.click()
-except:
-    pass
+#find skip button 
+while True:   
+    try:
+        elem = driver.find_element(By.CSS_SELECTOR, "[data-testid='button-skip']")
+        elem.click()
+        break
+    except:
+        pass
 
 #find hosted tab
 while True:
