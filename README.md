@@ -1,5 +1,5 @@
 # EngLinks-App-Server
-Server for testing features of the EngLinks workshop app.
+Server for testing features of [this](https://github.com/ebajec/EngLinks-App) app.
 
 
 **bounce_scraper.py:** Gathers data from EngLinks Bounce page to be used for event calendars.  Uses BeautifulSoup and Selenium.
