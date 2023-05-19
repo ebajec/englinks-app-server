@@ -6,7 +6,7 @@ Server for testing features of the EngLinks workshop app.
 
 Works under the assumption that the account being used to log in does not have a phone number connected. I have not checked if Bounce has two-factor authentication for phone-numer linked accounts.  If it does, this script will not work.  I figured it would be a safer bet to not connect a phone number and make this skip the prompt asking to do so. 
 
-Will not work unless a file named "username-password.txt" is placed in the same folder as this file. Must contain the username and THEN the password, separated by a single comma, with NO extra spaces.
+Will not work unless a file named "username-password.txt" is placed in the same folder as this file. Must contain the username and THEN the password, separated by a single comma, with NO extra spaces.  This is because bounce requires that users login before viewing any events.
 
 **NOTE:**  A valid web driver must be installed for Selenium to work.  See https://selenium-python.readthedocs.io/installation.html#drivers for more info.
 
