@@ -34,7 +34,7 @@ def find_three_digits(eventTitle):
 
 
 #NOTE: this will not work unless it has a valid password for a bounce account
-f = open('username-password.txt','r')
+f = open('private/username-password.txt','r')
 
 temp = f.read().split(',')
 
@@ -101,7 +101,8 @@ eventsHTML = [first_event_link] + other_events
 
 eventData = [("events_misc.txt",[]),("events_first_year.txt",[]),("events_upper_year.txt",[])]
 
-#this is for a bit of a hack to simplify things
+#This is for a bit of a hack. Keeps track of the month and
+# increments the year accordingly.  
 year = date.today().year
 date_stack = PushStack(2)
 
@@ -110,9 +111,10 @@ for event in eventsHTML:
     #first element is date + time, second is title, third is just "Hosted by EngLinks"
     data = event.find_next().find_next_siblings()
 
+    #this will get turned into json later
     eventInfo = {'title':'', 'date':'','month':'','year':'','time':''}
     
-    #this is a terrible way to parse strings but it works for now 
+    #this is a terrible way to parse strings but it works
     title = data[1].string
     date_num = data[0].string[3:7]
     month = data[0].string[:3]    
@@ -130,6 +132,7 @@ for event in eventsHTML:
     
     course_code = find_three_digits(title)
     
+    #puts eventInfo into corresponding file depending on course code, if extant
     if (course_code == 'none'):
         eventData[0][1].append(eventInfo)
     elif (int(course_code[0])) <= 1:

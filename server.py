@@ -2,7 +2,9 @@ from flask import Flask, request
 import json
 from datetime import date
 import os.path
-
+'''
+Elijah Bajec Dickinson 
+'''
 app = Flask(__name__)
 
 
@@ -24,6 +26,8 @@ def update_file():
     if(not os.path.isdir(filepath)): 
         os.mkdir(filepath)
     
+    #this is to identify multiple requests submitted on the same day
+    #appends to end of filename
     request_num = 0
 
     while True: 
