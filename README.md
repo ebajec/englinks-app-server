@@ -10,7 +10,7 @@ Will not work unless a file named "username-password.txt" is placed in a folder 
 
 **NOTE:**  A valid web driver must be installed for Selenium to work.  See https://selenium-python.readthedocs.io/installation.html#drivers for more info.
 
-**server.py** Flask server for testing the app.  Pretty self-explanatory I'm sure. 
+**server.py** Flask server for testing the app.  
 
 '/tutor-requests' recieves tutor requests and stores the data in folders for each username.
 
