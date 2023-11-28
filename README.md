@@ -1,4 +1,4 @@
-# EngLinks-App-Server
+# englinks-app-server
 Server for testing [EngLinks-App](https://github.com/ebajec/EngLinks-App).
 
 
